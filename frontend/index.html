@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DecodeLabs Intern Portal — Full Stack</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-brand">DecodeLabs <span>Intern Portal</span></div>
+    <nav class="nav-links">
+      <a href="#interns" class="active">Interns</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Project 4 — Full Stack Integration</h1>
+      <p>Frontend &harr; Backend &harr; Database, connected end-to-end via REST + async/await</p>
+      <p id="apiStatus" class="api-status">Checking API connection...</p>
+    </section>
+
+    <section id="interns" class="interns-section">
+      <div class="section-header">
+        <h2>Intern Directory</h2>
+        <div class="controls">
+          <input type="text" id="searchInput" placeholder="Search by name or role..." />
+          <button id="addInternBtn" class="btn-primary">+ Add Intern</button>
+        </div>
+      </div>
+
+      <div id="toast" class="toast" hidden></div>
+      <p id="loadingState" class="loading-state">Loading interns...</p>
+      <div id="internGrid" class="intern-grid"></div>
+      <p id="emptyState" class="empty-state" hidden>No interns found.</p>
+    </section>
+  </main>
+
+  <div id="internModal" class="modal" hidden>
+    <div class="modal-content">
+      <h3 id="modalTitle">Add New Intern</h3>
+      <form id="internForm">
+        <input type="hidden" id="internId" />
+        <label>Full Name
+          <input type="text" id="internName" required />
+        </label>
+        <label>Role
+          <input type="text" id="internRole" required />
+        </label>
+        <label>Email
+          <input type="email" id="internEmail" required />
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary" id="saveBtn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 DecodeLabs &middot; Batch 2026 Industrial Training Kit &middot; Project 4</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
