@@ -25,21 +25,35 @@ async function createIntern(req, res) {
     });
   }
 
-  const intern = await Intern.create({ name, role, email });
-  res.status(201).json({ success: true, data: intern });
+  try {
+    const intern = await Intern.create({ name, role, email });
+    res.status(201).json({ success: true, data: intern });
+  } catch (err) {
+    if (err.code === 11000) {
+      return res.status(409).json({ success: false, message: "Email already in use" });
+    }
+    throw err;
+  }
 }
 
 async function updateIntern(req, res) {
-  const intern = await Intern.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  try {
+    const intern = await Intern.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
-  if (!intern) {
-    return res.status(404).json({ success: false, message: "Intern not found" });
+    if (!intern) {
+      return res.status(404).json({ success: false, message: "Intern not found" });
+    }
+
+    res.status(200).json({ success: true, data: intern });
+  } catch (err) {
+    if (err.code === 11000) {
+      return res.status(409).json({ success: false, message: "Email already in use" });
+    }
+    throw err;
   }
-
-  res.status(200).json({ success: true, data: intern });
 }
 
 async function deleteIntern(req, res) {

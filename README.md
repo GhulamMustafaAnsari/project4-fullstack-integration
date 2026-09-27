@@ -28,6 +28,19 @@ Open `frontend/index.html` in a browser (or serve it with `npx serve frontend`).
 It calls the API at `http://localhost:5000/api/interns` — make sure the backend
 is running first.
 
+## Testing without a local MongoDB install
+
+`backend/test-with-memory-db.js` spins up a temporary in-memory MongoDB
+(via `mongodb-memory-server`) and starts the API against it on port 5060 —
+used to verify the full CRUD flow end-to-end (create, read, update, delete,
+duplicate-email conflict, 404 handling) without a local MongoDB setup:
+
+```bash
+cd backend
+npm install
+npm run test:memdb
+```
+
 ## What this project demonstrates
 - Async requests (`fetch` + `await`) instead of blocking the UI
 - Checking `response.ok` before parsing JSON

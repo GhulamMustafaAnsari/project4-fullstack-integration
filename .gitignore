@@ -1,2 +1,4 @@
 node_modules/
 .env
+memtest*.log
+server.pid
